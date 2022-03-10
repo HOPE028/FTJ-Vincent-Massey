@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/FTJ-Vincent-Massey/static/css/main.e6c13ad2.css",
+    "main.js": "/FTJ-Vincent-Massey/static/js/main.d096a110.js",
+    "index.html": "/FTJ-Vincent-Massey/index.html",
+    "main.e6c13ad2.css.map": "/FTJ-Vincent-Massey/static/css/main.e6c13ad2.css.map",
+    "main.d096a110.js.map": "/FTJ-Vincent-Massey/static/js/main.d096a110.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.d096a110.js"
+  ]
+}

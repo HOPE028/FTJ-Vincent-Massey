@@ -49,7 +49,8 @@ export default function Users() {
         return (
           <div key={event.id}>
             <h3>
-              {event.hours} | {event.date} | {event.startTime} - {event.endTime}
+              Hours: {event.hours} | Date: {event.date} | Time:{' '}
+              {event.startTime} - {event.endTime}
             </h3>
           </div>
         )

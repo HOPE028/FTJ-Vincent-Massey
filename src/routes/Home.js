@@ -8,7 +8,6 @@ export default function Home() {
 
   useEffect(() => {
     document.title = 'FTJ - VMC'
-    document.icon = 'https://images.app.goo.gl/S6H2J9vQComoeJTZ8'
   }, [])
 
   return (

@@ -13,6 +13,11 @@ export default function Home() {
   return (
     <div className='container'>
       <h1>Welcome To FTJ!</h1>
+      <p className='color-red'>
+        <b> Most Recent Update: </b>To delete an event : Member-Control page -
+        {'> '}
+        Member -{'>'} Change Log -{'>'} Delete
+      </p>
       <h4>Click On Button To Open Page:</h4>
       <button onClick={() => setOpenLink('Members')}>Members Page</button>
       <button onClick={() => setOpenLink('Members-Control')}>

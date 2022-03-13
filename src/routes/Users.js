@@ -27,7 +27,6 @@ export default function Users() {
       setCurrentLog(user)
       const currentUserRef = await collection(db, `Users/${user.id}/Log`)
       const data = await getDocs(currentUserRef)
-      console.log(data)
       setLog(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
     } else {
       setCurrentLog(null)

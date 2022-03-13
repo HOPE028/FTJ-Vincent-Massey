@@ -35,6 +35,11 @@ export default function User_Control() {
   const [updatedContact, setUpdatedContact] = useState()
   const [updatedProNouns, setUpdatedProNouns] = useState()
 
+  //Log
+  const [log, setLog] = useState([])
+  const [currentLogUser, setCurrentLogUser] = useState()
+  const [logBeingChanged, setLogBeingChanged] = useState()
+
   useEffect(() => {
     const getUsers = async () => {
       const data = await getDocs(usersCollectionRef)
@@ -88,6 +93,20 @@ export default function User_Control() {
     } else {
       setCurrentUserBeingUpdated(null)
       setUserBeingUpdated(false)
+    }
+  }
+
+  const changeLogInfo = async (user) => {
+    if (user != currentLogUser) {
+      setCurrentLogUser(user)
+      setLogBeingChanged(true)
+      const currentUserRef = await collection(db, `Users/${user.id}/Log`)
+      const data = await getDocs(currentUserRef)
+      setLog(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
+    } else {
+      setCurrentLogUser(null)
+      setLogBeingChanged(false)
+      setLog([])
     }
   }
 
@@ -195,6 +214,8 @@ export default function User_Control() {
         ''
       )}
 
+      {logBeingChanged == true && <Log user={currentLogUser} log={log} />}
+
       <h2>Existing Members</h2>
 
       <input
@@ -217,6 +238,10 @@ export default function User_Control() {
           return (
             <div key={user.id} className='box-black container'>
               <h2>{user.name}</h2>
+              <button onClick={() => changeLogInfo(user)}>
+                {user == currentLogUser ? '✅ ' : ''}
+                Change Log
+              </button>
               <button onClick={() => changeMemberInfo(user)}>
                 {user == currentUserBeingUpdated ? '✅ ' : ''}
                 Change Member Information
@@ -274,6 +299,54 @@ class UpdateUserInfo extends React.Component {
         >
           Update User
         </button>
+      </div>
+    )
+  }
+}
+
+class Log extends React.Component {
+  constructor(props) {
+    super(props)
+
+    this.deleteUser = this.deleteUser.bind(this)
+    this.updateUserHour = this.updateUserHour.bind(this)
+  }
+
+  async deleteUser(log) {
+    if (window.confirm('Delete Log?')) {
+      const decreaseHours = log.hours
+      const logDoc = doc(db, `Users/${this.props.user.id}/Log`, log.id)
+      await deleteDoc(logDoc)
+      this.updateUserHour(decreaseHours)
+      window.location.reload(false)
+    }
+  }
+
+  async updateUserHour(hoursDecreased) {
+    const userDoc = doc(db, 'Users', this.props.user.id)
+    const newFields = {
+      hours: Number(this.props.user.hours - hoursDecreased),
+    }
+    await updateDoc(userDoc, newFields)
+    window.location.reload(false)
+  }
+
+  render() {
+    return (
+      <div>
+        <h2>Changing {this.props.user.name}'s Logs</h2>
+
+        {this.props.log.map((event) => {
+          return (
+            <div key={event.id}>
+              <h4>
+                Hours: {event.hours} | Date: {event.date} | Time:{' '}
+                {event.startTime} - {event.endTime} {'   '}
+                <button onClick={() => this.deleteUser(event)}>Delete</button>
+              </h4>
+            </div>
+          )
+        })}
       </div>
     )
   }

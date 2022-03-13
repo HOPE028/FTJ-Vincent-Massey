@@ -109,44 +109,48 @@ export default function Event() {
       <h1>Enter new Event</h1>
 
       <div>
-        {/* <p>Length Of The Event</p>
-        <input
-          type='number'
-          placeholder='Length...'
-          onChange={(event) => setNewLength(event.target.value)}
-        /> */}
-        <p>The Date Of The Event</p>
-        <input
-          type='date'
-          placeholder='Date...'
-          onChange={(event) => setNewDate(event.target.value)}
-        />
-        <p>The Start Time Of The Event</p>
-        <input
-          type='time'
-          placeholder='Time...'
-          onChange={(event) => setNewStartTime(event.target.value)}
-        />
-        <p>The End Time Of The Event</p>
-        <input
-          type='time'
-          placeholder='Time...'
-          onChange={(event) => setNewEndTime(event.target.value)}
-        />
         <p>
           <b>
             <i>**Fill In Everything BEFORE submitting**</i>
           </b>
         </p>
+        <h4>Steps: </h4>
+        <p>
+          <b>1)</b> The Date Of The Event
+        </p>
+        <input
+          type='date'
+          placeholder='Date...'
+          onChange={(event) => setNewDate(event.target.value)}
+        />
+        <p>
+          <b>2)</b> The Start Time Of The Event
+        </p>
+        <input
+          type='time'
+          placeholder='Time...'
+          onChange={(event) => setNewStartTime(event.target.value)}
+        />
+        <p>
+          <b>3)</b> The End Time Of The Event
+        </p>
+        <input
+          type='time'
+          placeholder='Time...'
+          onChange={(event) => setNewEndTime(event.target.value)}
+        />
+
         <button onClick={newEvent}>Add Event</button>
       </div>
 
       <div>
-        <h4>Add Members To It</h4>
+        <h4>
+          <b>4)</b> Add Members To It
+        </h4>
         {eventMemebers.map((user) => {
           return (
             <div key={user.id}>
-              <p>{user.name}</p>
+              <p className='userName-red'>■ {user.name}</p>
             </div>
           )
         })}
@@ -174,9 +178,12 @@ export default function Event() {
                   onClick={() => {
                     eventMembersControl(user)
                   }}
+                  className='userName background-red userName-white'
                 >
-                  {eventMemebers.includes(user) ? '✅ ' : ''}
-                  {user.name}
+                  <p>
+                    {eventMemebers.includes(user) ? '✅ ' : ''}
+                    {user.name}
+                  </p>
                 </button>
               </div>
             )

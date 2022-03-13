@@ -149,7 +149,7 @@ export default function User_Control() {
   return (
     <div>
       <div>
-        <h3>Add New Member</h3>
+        <h2>Add New Member</h2>
         <input
           placeholder='Name...'
           onChange={(event) => setNewName(event.target.value)}
@@ -195,7 +195,7 @@ export default function User_Control() {
         ''
       )}
 
-      <h3>Existing Members</h3>
+      <h2>Existing Members</h2>
 
       <input
         type='text'
@@ -215,8 +215,8 @@ export default function User_Control() {
         })
         .map((user) => {
           return (
-            <div key={user.id}>
-              <h1>{user.name}</h1>
+            <div key={user.id} className='box-black container'>
+              <h2>{user.name}</h2>
               <button onClick={() => changeMemberInfo(user)}>
                 {user == currentUserBeingUpdated ? '✅ ' : ''}
                 Change Member Information

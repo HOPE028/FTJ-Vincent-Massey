@@ -37,6 +37,7 @@ export default function Users() {
 
   return (
     <div>
+      {currentLog != null && <DisplayLog currentLog={currentLog} log={log} />}
       <h1>Members:</h1>
 
       <input
@@ -44,43 +45,53 @@ export default function Users() {
         placeholder='Search...'
         onChange={(event) => setSearchValue(event.target.value)}
       />
+      <div className='container'>
+        {users
+          .filter((user) => {
+            if (searchValue == '') {
+              return user
+            } else if (
+              user.name.toLowerCase().includes(searchValue.toLowerCase())
+            ) {
+              return user
+            }
+          })
+          .map((user) => {
+            return (
+              <div key={user.id} className='box-black flex container'>
+                <h2>{user.name}</h2>
+                <h4>
+                  Grade: {user.grade} | Role: {user.role} | Hours: {user.hours}{' '}
+                  | Pronouns: {user.pronouns} | Contact: {user.contact}
+                </h4>
+                <button onClick={() => checkUserLog(user)}>
+                  {user == currentLog ? '✅ ' : ''}
+                  Member Log
+                </button>
+              </div>
+            )
+          })}
+      </div>
+    </div>
+  )
+}
 
-      {log.map((event) => {
-        return (
-          <div key={event.id}>
-            <h3>
-              Hours: {event.hours} | Date: {event.date} | Time:{' '}
-              {event.startTime} - {event.endTime}
-            </h3>
-          </div>
-        )
-      })}
-
-      {users
-        .filter((user) => {
-          if (searchValue == '') {
-            return user
-          } else if (
-            user.name.toLowerCase().includes(searchValue.toLowerCase())
-          ) {
-            return user
-          }
-        })
-        .map((user) => {
+class DisplayLog extends React.Component {
+  render() {
+    return (
+      <div>
+        <h2>Viewing {this.props.currentLog.name}'s Log</h2>
+        {this.props.log.map((event) => {
           return (
-            <div key={user.id}>
-              <h1>{user.name}</h1>
-              <h3>
-                Grade: {user.grade} | Role: {user.role} | Hours: {user.hours} |
-                Pronouns: {user.pronouns} | Contact: {user.contact}
-              </h3>
-              <button onClick={() => checkUserLog(user)}>
-                {user == currentLog ? '✅ ' : ''}
-                Member Log
-              </button>
+            <div key={event.id}>
+              <h4>
+                Hours: {event.hours} | Date: {event.date} | Time:{' '}
+                {event.startTime} - {event.endTime}
+              </h4>
             </div>
           )
         })}
-    </div>
-  )
+      </div>
+    )
+  }
 }

@@ -1,10 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Users from './Users'
 import User_Control from './User-Control'
 import Events from './Event'
 
 export default function Home() {
   const [openLink, setOpenLink] = useState('')
+
+  useEffect(() => {
+    document.title = 'FTJ - VMC'
+    document.icon = 'https://images.app.goo.gl/S6H2J9vQComoeJTZ8'
+  }, [])
 
   return (
     <div className='container'>

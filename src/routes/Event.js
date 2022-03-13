@@ -153,7 +153,7 @@ export default function Event() {
           )
         })}
         <h4>
-          Submit Event <button onClick={newEvent}>Add Event</button>
+          <b>5)</b> Submit Event <button onClick={newEvent}>Add Event</button>
         </h4>
 
         <button onClick={addEveryOneToEvent}>ALL</button>

@@ -139,8 +139,6 @@ export default function Event() {
           placeholder='Time...'
           onChange={(event) => setNewEndTime(event.target.value)}
         />
-
-        <button onClick={newEvent}>Add Event</button>
       </div>
 
       <div>
@@ -154,6 +152,10 @@ export default function Event() {
             </div>
           )
         })}
+        <h4>
+          Submit Event <button onClick={newEvent}>Add Event</button>
+        </h4>
+
         <button onClick={addEveryOneToEvent}>ALL</button>
         <input
           type='text'

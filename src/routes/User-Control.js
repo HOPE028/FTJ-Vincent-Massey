@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, lazy, Suspense } from 'react'
 import { db } from '../firebase-config'
 import {
   collection,
@@ -42,6 +42,7 @@ export default function User_Control() {
 
   useEffect(() => {
     const getUsers = async () => {
+      // const data = lazy(() => await getDocs(usersCollectionRef))
       const data = await getDocs(usersCollectionRef)
       setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })))
     }

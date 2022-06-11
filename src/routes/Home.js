@@ -13,18 +13,21 @@ export default function Home() {
   return (
     <div className='container'>
       <h1>Welcome To FTJ!</h1>
-      <p className='color-red'>
-        <b> Most Recent Update: </b>To delete an event : Member-Control page -
-        {'> '}
-        Member -{'>'} Change Log -{'>'} Delete
-      </p>
-      <h4>Click On Button To Open Page:</h4>
-      <button onClick={() => setOpenLink('Members')}>Members Page</button>
+      <h4>Which Page Would You Like To Open?</h4>
+      <button onClick={() => setOpenLink('Members')}>
+        Members Page
+        <div className='smallText'>{openLink == 'Members' ? '✅' : ''}</div>
+      </button>
       <button onClick={() => setOpenLink('Members-Control')}>
         Members-Control Page
+        <div className='smallText'>
+          {openLink == 'Members-Control' ? '✅' : ''}
+        </div>
       </button>
-      <button onClick={() => setOpenLink('Events')}>Events Page</button>
-
+      <button onClick={() => setOpenLink('Events')}>
+        Events Page
+        <div className='smallText'>{openLink == 'Events' ? '✅' : ''}</div>
+      </button>
       {openLink == 'Members' && <Users />}
       {openLink == 'Members-Control' && <User_Control />}
       {openLink == 'Events' && <Events />}

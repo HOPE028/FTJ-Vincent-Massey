@@ -45,3 +45,25 @@ body {
 .color-red {
   color: red;
 }
+
+button {
+  background: white;
+  color: black;
+  font-size: 18px;
+  border: 1px solid rgb(123, 123, 123);
+}
+
+button:hover {
+  background: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+}
+
+input {
+  font-size: 18px;
+  color: black;
+}
+
+.smallText {
+  font-size: 15px;
+  display: inline-block;
+}

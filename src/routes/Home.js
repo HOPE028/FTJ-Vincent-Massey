@@ -12,6 +12,7 @@ export default function Home() {
 
   return (
     <div className='container'>
+      <h1>HELLOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO</h1>
       <h1>Welcome To FTJ!</h1>
       <h4>Which Page Would You Like To Open?</h4>
       <button onClick={() => setOpenLink('Members')}>
